@@ -1,1 +1,1 @@
-# MDBCERT
+Repository containing Mongo Db java developer certification resources.
