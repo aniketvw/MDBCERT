@@ -1,0 +1,65 @@
+Deploying an Atlas cluster:
+
+atlas setup --clusterName myAtlasClusterEDU --provider AWS --currentIp --skipSampleData --username myAtlasDBUser --password myatlas-001 --projectId 677bdf0cab1da143bdf73800  | tee atlas_cluster_details.txt
+
+Load Sample dataset:
+atlas cluster sampleData clusterName
+
+You have an Atlas cluster and need to grant specific users access to specific projects: Organizations
+
+---
+
+Document: basic unit of data in MongoDB.
+Collection: A grouping of documents.
+Database: A container for collections.
+
+A simple document: 
+{
+	"_id": 1,
+	"name":"AC3 Phone",
+	"colors":["black", "silver"],
+	"price": 200,
+	"available": true
+}
+
+Displayed in JSON / Stored in BSON
+ 
+Every document requires an _id field, which acts as a primary key.
+
+Documents may contain different fields, Fields may contain different types. 
+
+Flexible schema: Initially I am having a document that contains name and price. Later I decide to add description also(Trivial change):
+	RelationalDatabase: Complex chain of dependecies.
+	MongoDB: Just update the classes to include new field.
+	Optional document validation can be added.
+
+ObjectId: Data type used to autogenerate a unique identifier for a document if an inserted document does not include an _id field.
+_id: Required field but not a data type.
+
+---
+
+MongoDbDataModeeling:
+
+	Data Modeling: How data is stored and relationships that exist among different entities in data.
+	Good data model: Makes it easier to manage data. Makes queries more efficient. Use less memory and CPU. Reduce costs.
+Mongo Principal: Data that is accessed together should be stored together.(If it is not, DB has to access multiple collections thus adding resource and time cost)
+Documents can contain other documents. Embedded document model. Enables complex relationships between data.
+
+
+	Relationship types: 1:1 / 1:Many / Many:Many
+
+		1:1 -> Data entity in one set is connected to exactly one data entity in another set.(Traditional DB: Table of movies with table of directors / Mongo has in single 			       document)
+		1:Many -> Data entity in one set is connected to any number of data entities in another set.
+				{ "_id": "1234",
+				  "title": "ABC",
+				  "cast":[
+					
+					{"actor":"act1","character":"char1"},
+					{"actor":"act2","character":"char2"},
+					....
+
+					]
+				}
+		Many:Many -> Any number of data entities are connected to any number of data entities in another set.
+Embedding/Refrencing.
+
